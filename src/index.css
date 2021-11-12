@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  background-color: green;
+  height: 600px;
+  width: 600px;
+  border: 2px solid black;
+}
+
+.space {
+  border: 1px solid black;
+}
+
+.water {
+  background-color: blue;
+}
+
+.pieces {
+  background-color: gray;
+  height: 100px;
+}
