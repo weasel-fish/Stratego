@@ -1,8 +1,8 @@
-function Piece({num, type}) {
+function Piece({piece, setSelected}) {
     return (
         <div className="piece-container-card">
-            <h4>{type}</h4>
-            <p>{num}</p>
+            <h4>{piece.name} {piece.val ? ' (' + piece.val + ')' : null}</h4>
+            <p>{piece.num}</p>
         </div>
     )
 }

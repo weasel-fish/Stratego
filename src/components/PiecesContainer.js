@@ -5,7 +5,7 @@ function PiecesContainer({bank, setSelected}) {
 
     return (
         <div className="pieces">
-            {Object.keys(bank).map(type => <Piece type={type} num={bank[type]}/>)}
+            {bank.map(piece => <Piece piece={piece} setSelected={setSelected}/>)}
         </div>
     )
 }
