@@ -1,28 +1,33 @@
 import Space from './Space'
-import WaterTile from './WaterTile'
+import {useState} from 'react'
 
-function Board() {
-    let spaces = []
-    let waterTiles = [43, 44, 47, 48, 53, 54, 57, 58]
-    for(let i = 1; i <= 100; i++) {
-        if(waterTiles.includes(i)) {
-            spaces.push('w' + i)
-        } else {
-            spaces.push(i)
-        }
-    }
+function Board({setSelected}) {
 
-    console.log(spaces)
+    let boardMatrix = [['blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'],
+    ['blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'],
+    ['blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'],
+    ['blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'],
+    [null, null, 'water', 'water', null, null, 'water', 'water', null, null],
+    [null, null, 'water', 'water', null, null, 'water', 'water', null, null],
+    ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red'], 
+    ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red'], 
+    ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red'], 
+    ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red']]
+    
+    const [boardCoords, setBoardCoords] = useState(boardMatrix)
 
     return (
         <div id='board'>
-            {spaces.map(space => {
-                if(typeof space != 'string') {
-                    return <Space key={space} num={space > 60 ? `R${space - 60}`: space < 41 ? `B${space}` : space}/>
-                } else {
-                    return <WaterTile key={space}/>
-                }
-            })}
+            {boardCoords[0].map((space, index) => <Space occupant={space} num ={'A' + (index + 1)} />)}
+            {boardCoords[1].map((space, index) => <Space occupant={space} num ={'B' + (index + 1)} />)}
+            {boardCoords[2].map((space, index) => <Space occupant={space} num ={'C' + (index + 1)} />)}
+            {boardCoords[3].map((space, index) => <Space occupant={space} num ={'D' + (index + 1)} />)}
+            {boardCoords[4].map((space, index) => <Space occupant={space} num ={'E' + (index + 1)} />)}
+            {boardCoords[5].map((space, index) => <Space occupant={space} num ={'F' + (index + 1)} />)}
+            {boardCoords[6].map((space, index) => <Space occupant={space} num ={'G' + (index + 1)} />)}
+            {boardCoords[7].map((space, index) => <Space occupant={space} num ={'H' + (index + 1)} />)}
+            {boardCoords[8].map((space, index) => <Space occupant={space} num ={'I' + (index + 1)} />)}
+            {boardCoords[9].map((space, index) => <Space occupant={space} num ={'J' + (index + 1)} />)}
         </div>
     )
 }

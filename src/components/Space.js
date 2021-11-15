@@ -1,10 +1,10 @@
 import {useState} from 'react'
 
-function Space({num}) {
-    const [occupant, setOccupant] = useState(null)
+function Space({num, occupant}) {
+    
     return (
-        <div className="space">
-            <p>{num}</p>
+        <div className={occupant == 'water' ? 'water': "space"}>
+            <p>{occupant == 'water' ? null : num}</p>
         </div>
     )
 }
