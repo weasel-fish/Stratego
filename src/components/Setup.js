@@ -70,15 +70,17 @@ function Setup() {
 
     const [bankState, setBankState] = useState(pieceBank)
     const [selected, setSelected] = useState(null)
+
     console.log(selected)
 
 
     return (
         <>
             <h1>Setup</h1>
+            <p>You have selected: {selected?.name}</p>
             <div className='setup'>
                 <PiecesContainer bank={bankState} setSelected={setSelected}/>
-                <Board setSelected={setSelected}/>
+                <Board setSelected={setSelected} selected={selected} setBankState={setBankState} bankState={bankState}/>
             </div>
         </>
     )
