@@ -1,16 +1,14 @@
-function Piece({piece, setSelected}) {
+function Piece({type, collection, selected, handlePieces}) {
 
-    function handleSelect() {
-        if(piece.num > 0) {
-            setSelected(piece)
-        }
+    function handleClick() {
+        handlePieces(type)
     }
 
-
     return (
-        <div onClick={handleSelect} className="piece-container-card">
-            <h4>{piece.name} {piece.val ? ' (' + piece.val + ')' : null}</h4>
-            <p>{piece.num}</p>
+        <div onClick={handleClick} className="piece-container-card">
+            {/* <h4>{piece} {piece.val ? ' (' + piece.val + ')' : null}</h4> */}
+            <h4>{type}</h4>
+            <p>{collection.length}</p>
         </div>
     )
 }
