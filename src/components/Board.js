@@ -22,7 +22,21 @@ function Board({setSelected, selected, bankState, setBankState}) {
         newRow[col] = piece
         newBoardCoords.splice(row, 1, newRow)
         setBoardCoords(newBoardCoords)
+        if(piece) {
+            decrementPieceCount(piece)
+        }
         setSelected(null)
+    }
+
+    function decrementPieceCount(piece) {
+        let newBank = {
+            ...bankState,
+        }
+
+        newBank[piece.name].num --
+
+        setBankState(newBank)
+
     }
 
     console.log(boardCoords)
