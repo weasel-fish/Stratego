@@ -1,4 +1,4 @@
-function Piece({type, collection, selected, handlePieces}) {
+function Piece({type, collection, handlePieces}) {
 
     function handleClick() {
         handlePieces(type)

@@ -17,12 +17,16 @@ function Board({setSelected, selected}) {
     const [boardCoords, setBoardCoords] = useState(boardMatrix)
 
     function assignOccupant(row, col, piece) {
-        let newBoardCoords = boardCoords.slice()
-        let newRow = newBoardCoords[row].slice()
-        newRow[col] = piece
-        newBoardCoords.splice(row, 1, newRow)
-        setBoardCoords(newBoardCoords)
-        setSelected(null)
+        if(row > 5) {
+            let newBoardCoords = boardCoords.slice()
+            let newRow = newBoardCoords[row].slice()
+            newRow[col] = piece
+            newBoardCoords.splice(row, 1, newRow)
+            setBoardCoords(newBoardCoords)
+            setSelected(null)
+        } else {
+            console.log("Invalid")
+        }
     }
 
     console.log(boardCoords)

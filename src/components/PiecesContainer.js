@@ -1,7 +1,7 @@
 import Piece from "./Piece"
 import {useState} from 'react'
 
-function PiecesContainer({selected, setSelected}) {
+function PiecesContainer({selected, setSelected, readyCount, setReadyCount}) {
 
     let  pieceBank = {
         Marshall: [{name : 'Marshall', val: 10}],
@@ -14,6 +14,7 @@ function PiecesContainer({selected, setSelected}) {
         Miner: [{name: 'Miner', val: 3}, {name: 'Miner', val: 3}, {name: 'Miner', val: 3}, {name: 'Miner', val: 3}, {name: 'Miner', val: 3}],
         Scout: [{name: 'Scout', val:2}, {name: 'Scout', val: 2}, {name: 'Scout', val: 2}, {name: 'Scout', val:2}, {name: 'Scout', val: 2}, {name: 'Scout', val: 2}, {name: 'Scout', val: 2}, {name: 'Scout', val: 2}],
         Bomb: [{name: 'Bomb', val: null}, {name: 'Bomb', val: null}, {name: 'Bomb', val: null}, {name: 'Bomb', val: null}, {name: 'Bomb', val: null}, {name: 'Bomb', val: null}],
+        Spy: [{name: 'Spy', val: 1}],
         Flag: [{name: 'Flag', val: null}]
     }
 
@@ -70,11 +71,13 @@ function PiecesContainer({selected, setSelected}) {
     }
 
     const [bankState, setBankState] = useState(pieceBank)
+    
 
     function pickUpPiece(type) {
         let tempBank = {...bankState}
         setSelected(tempBank[type].pop())
         setBankState(tempBank)
+        setReadyCount(readyCount => readyCount - 1)
     }
 
     function putPieceBack(type) {
@@ -82,6 +85,7 @@ function PiecesContainer({selected, setSelected}) {
         tempBank[type].push(pieceDictionary[type])
         setBankState(tempBank)
         setSelected(null)
+        setReadyCount(readyCount => readyCount + 1)
     }
 
     function handlePieces(type) {
@@ -96,10 +100,10 @@ function PiecesContainer({selected, setSelected}) {
     }
 
     let bankArray = Object.keys(bankState)
-    console.log(bankArray)
 
     return (
         <div className="pieces">
+            <button onClick={() => console.log('To be implemented later')}>Autofill</button>
             {bankArray.map(type => <Piece type={type} collection={bankState[type]} handlePieces={handlePieces} selected={selected}/>)}
         </div>
     )
