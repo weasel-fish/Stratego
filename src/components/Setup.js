@@ -5,7 +5,6 @@ import {useState} from 'react'
 function Setup() {
 
     const [selected, setSelected] = useState(null)
-    const [readyCount, setReadyCount] = useState(40)
     const [auto, setAuto] = useState(false)
 
     let pieceDictionary = 
@@ -60,20 +59,15 @@ function Setup() {
         }
     }
 
-    function handleConfirm() {
-        console.log('I do nothing right now')
-    }
-
     return (
         <>
             <h1>Setup</h1>
             <button onClick={() => setAuto(!auto)}>{auto ? 'Manual' :'Auto'}</button>
             <p>You have selected: {selected ? selected.name : 'no piece'}</p>
             <div className='setup'>
-                <PiecesContainer selected={selected} setSelected={setSelected} readyCount={readyCount} setReadyCount={setReadyCount} auto={auto} pieceDictionary={pieceDictionary}/>
+                <PiecesContainer selected={selected} setSelected={setSelected} auto={auto} pieceDictionary={pieceDictionary}/>
                 <Board setSelected={setSelected} selected={selected} auto={auto} pieceDictionary={pieceDictionary}/>
             </div>
-            <button disabled={readyCount != 0} onClick={handleConfirm}>Confirm Setup</button>
         </>
     )
 }

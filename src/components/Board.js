@@ -50,12 +50,24 @@ function Board({setSelected, selected, auto, pieceDictionary}) {
         }
     }
 
-    console.log(boardCoords)
+    function fullBoard(board) {
+        for(let i = 6; i < 10; i++) {
+            if(board[i].includes(null)) {
+                return false
+            }
+        }
+        return true
+    }
 
+    let full = fullBoard(boardCoords)
+    
     return (
+        <>
         <div id='board'>
             {boardCoords.map((array, row) => array.map((occupant, column) => <Square occupant={occupant} assignOccupant={assignOccupant} row={row} column={column} setSelected={setSelected} selected={selected}/>))}
         </div>
+            <button disabled={!full}>Confirm Setup</button>
+        </>
     )
 }
 

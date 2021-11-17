@@ -100,7 +100,6 @@ function PiecesContainer({selected, setSelected, readyCount, setReadyCount, auto
         let tempBank = {...bankState}
         setSelected(tempBank[type].pop())
         setBankState(tempBank)
-        setReadyCount(readyCount => readyCount - 1)
     }
 
     function putPieceBack(type) {
@@ -108,7 +107,6 @@ function PiecesContainer({selected, setSelected, readyCount, setReadyCount, auto
         tempBank[type].push(pieceDictionary[type])
         setBankState(tempBank)
         setSelected(null)
-        setReadyCount(readyCount => readyCount + 1)
     }
 
     function handlePieces(type) {
