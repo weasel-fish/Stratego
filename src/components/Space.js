@@ -1,5 +1,3 @@
-import {useState} from 'react'
-
 function Space({row, column, occupant, setSelected, selected, assignOccupant}) {
 
     function handleSpaceClick() {
@@ -17,8 +15,8 @@ function Space({row, column, occupant, setSelected, selected, assignOccupant}) {
     }
 
     return (
-        <div onClick={handleSpaceClick} className={occupant == 'water' ? 'water': "space"}>
-            <p>{occupant == 'water' ? null : occupant != null ? occupant.name : row + ', ' + column}</p>
+        <div onClick={handleSpaceClick} className="space">
+            <p>{occupant?.name}</p>
         </div>
     )
 }

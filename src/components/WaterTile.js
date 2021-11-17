@@ -1,6 +1,6 @@
 function WaterTile() {
     return (
-        <div class='water'>
+        <div className='water'>
         </div>
     )
 }

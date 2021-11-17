@@ -1,9 +1,9 @@
 import Piece from "./Piece"
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
-function PiecesContainer({selected, setSelected, readyCount, setReadyCount}) {
+function PiecesContainer({selected, setSelected, readyCount, setReadyCount, auto, pieceDictionary}) {
 
-    let  pieceBank = {
+    let pieceBank = {
         Marshall: [{name : 'Marshall', val: 10}],
         General: [{name: 'General', val: 9}],
         Colonel: [{name: 'Colonel', val: 8}, {name: 'Colonel', val: 8}],
@@ -18,61 +18,84 @@ function PiecesContainer({selected, setSelected, readyCount, setReadyCount}) {
         Flag: [{name: 'Flag', val: null}]
     }
 
-    let pieceDictionary = 
-    {
-        Marshall: {
-            name : 'Marshall',
-            val: 10
-        },
-        General : {
-            name: 'General',
-            val: 9
-        },
-        Colonel: {
-            name: 'Colonel',
-            val: 8
-        },
-        Major: {
-            name: 'Major',
-            val: 7
-        },
-        Captain: {
-            name: 'Captain',
-            val: 6
-        },
-        Lieutenant: {
-            name: 'Lieutenant',
-            val: 5
-        },
-        Sergeant: {
-            name: 'Sergeant',
-            val: 4
-        },
-        Miner: {
-            name: 'Miner',
-            val: 3
-        },
-        Scout: {
-            name: 'Scout',
-            val: 2
-        },
-        Spy: {
-            name: 'Spy',
-            val: 1
-        },
-        Bomb: {
-            name: 'Bomb',
-            val: null
-        },
-        Flag: {
-            name: 'Flag',
-            val: null
-        }
+    let emptyBank = {
+        Marshall: [],
+        General: [],
+        Colonel: [],
+        Major: [],
+        Captain: [],
+        Lieutenant: [],
+        Sergeant: [],
+        Miner: [],
+        Scout: [],
+        Bomb: [],
+        Spy: [],
+        Flag: []
     }
+
+    // let pieceDictionary = 
+    // {
+    //     Marshall: {
+    //         name : 'Marshall',
+    //         val: 10
+    //     },
+    //     General : {
+    //         name: 'General',
+    //         val: 9
+    //     },
+    //     Colonel: {
+    //         name: 'Colonel',
+    //         val: 8
+    //     },
+    //     Major: {
+    //         name: 'Major',
+    //         val: 7
+    //     },
+    //     Captain: {
+    //         name: 'Captain',
+    //         val: 6
+    //     },
+    //     Lieutenant: {
+    //         name: 'Lieutenant',
+    //         val: 5
+    //     },
+    //     Sergeant: {
+    //         name: 'Sergeant',
+    //         val: 4
+    //     },
+    //     Miner: {
+    //         name: 'Miner',
+    //         val: 3
+    //     },
+    //     Scout: {
+    //         name: 'Scout',
+    //         val: 2
+    //     },
+    //     Spy: {
+    //         name: 'Spy',
+    //         val: 1
+    //     },
+    //     Bomb: {
+    //         name: 'Bomb',
+    //         val: null
+    //     },
+    //     Flag: {
+    //         name: 'Flag',
+    //         val: null
+    //     }
+    // }
 
     const [bankState, setBankState] = useState(pieceBank)
     
+    useEffect(() => {
+        if(auto) {
+            setBankState(emptyBank)
+        } else {
+            setBankState(pieceBank)
+        }
+    }, [auto])
 
+    
     function pickUpPiece(type) {
         let tempBank = {...bankState}
         setSelected(tempBank[type].pop())
@@ -103,7 +126,6 @@ function PiecesContainer({selected, setSelected, readyCount, setReadyCount}) {
 
     return (
         <div className="pieces">
-            <button onClick={() => console.log('To be implemented later')}>Autofill</button>
             {bankArray.map(type => <Piece type={type} collection={bankState[type]} handlePieces={handlePieces} selected={selected}/>)}
         </div>
     )
