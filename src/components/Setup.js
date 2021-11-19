@@ -1,6 +1,7 @@
 import Board from "./Board"
 import PiecesContainer from './PiecesContainer'
 import {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 
 function Setup() {
 
