@@ -7,5 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Test.destroy_all
+Testgame.destroy_all
 
 Test.create(name: 'lol')
+Testgame.create(row_one: ['hello', 'world'])

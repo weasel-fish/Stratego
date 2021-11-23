@@ -1,5 +1,6 @@
 import Square from './Square'
 import {useState, useEffect} from 'react'
+import {API_ROOT} from '../constants'
 
 function Board({setSelected, selected, auto, pieceDictionary}) {
 
@@ -59,6 +60,18 @@ function Board({setSelected, selected, auto, pieceDictionary}) {
         return true
     }
 
+    function handleConfirm() {
+        fetch(`${API_ROOT}/testgames`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                row_one: ['hello', 'there']
+            })
+        })
+    }
+
     let full = fullBoard(boardCoords)
     
     return (
@@ -66,7 +79,7 @@ function Board({setSelected, selected, auto, pieceDictionary}) {
         <div id='board'>
             {boardCoords.map((array, row) => array.map((occupant, column) => <Square occupant={occupant} assignOccupant={assignOccupant} row={row} column={column} setSelected={setSelected} selected={selected}/>))}
         </div>
-            <button disabled={!full}>Confirm Setup</button>
+            <button disabled={!full} onClick={handleConfirm}>Confirm Setup</button>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import Piece from "./Piece"
 import {useState, useEffect} from 'react'
 
-function PiecesContainer({selected, setSelected, readyCount, setReadyCount, auto, pieceDictionary}) {
+function PiecesContainer({selected, setSelected, auto, pieceDictionary}) {
 
     let pieceBank = {
         Marshall: [{name : 'Marshall', val: 10}],
@@ -32,58 +32,6 @@ function PiecesContainer({selected, setSelected, readyCount, setReadyCount, auto
         Spy: [],
         Flag: []
     }
-
-    // let pieceDictionary = 
-    // {
-    //     Marshall: {
-    //         name : 'Marshall',
-    //         val: 10
-    //     },
-    //     General : {
-    //         name: 'General',
-    //         val: 9
-    //     },
-    //     Colonel: {
-    //         name: 'Colonel',
-    //         val: 8
-    //     },
-    //     Major: {
-    //         name: 'Major',
-    //         val: 7
-    //     },
-    //     Captain: {
-    //         name: 'Captain',
-    //         val: 6
-    //     },
-    //     Lieutenant: {
-    //         name: 'Lieutenant',
-    //         val: 5
-    //     },
-    //     Sergeant: {
-    //         name: 'Sergeant',
-    //         val: 4
-    //     },
-    //     Miner: {
-    //         name: 'Miner',
-    //         val: 3
-    //     },
-    //     Scout: {
-    //         name: 'Scout',
-    //         val: 2
-    //     },
-    //     Spy: {
-    //         name: 'Spy',
-    //         val: 1
-    //     },
-    //     Bomb: {
-    //         name: 'Bomb',
-    //         val: null
-    //     },
-    //     Flag: {
-    //         name: 'Flag',
-    //         val: null
-    //     }
-    // }
 
     const [bankState, setBankState] = useState(pieceBank)
     
