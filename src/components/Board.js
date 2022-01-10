@@ -67,7 +67,10 @@ function Board({setSelected, selected, auto, pieceDictionary}) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                row_one: ['hello', 'there']
+                row_one: boardCoords[9],
+                row_two: boardCoords[8],
+                row_three: boardCoords[7],
+                row_four: boardCoords[6]
             })
         })
     }

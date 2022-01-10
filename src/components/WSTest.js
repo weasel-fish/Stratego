@@ -9,6 +9,10 @@ function WSTest() {
     useEffect(() => {
         loadStuffInitially()
         subscribeToChannel()
+
+        return function unSub() {
+            cable.disconnect()
+        }
     }, []) 
     
     function loadStuffInitially() {
@@ -22,7 +26,7 @@ function WSTest() {
         //     channel: 'TestroomsChannel'
         // })
 
-        cable.subscriptions.create({
+        cable.subscriptions.create({ // save as variable to later unsub?
             channel: `TestroomsChannel`
             },
               {connected: () => {
@@ -35,6 +39,7 @@ function WSTest() {
                 // once the subscription is initiated
                 // when the server is sent data it will
                 // broadcast it out to the subscribers
+                console.log(data)
                 handleReceived(data)
                 console.log('TestroomsChannel data received')
               }
@@ -42,9 +47,7 @@ function WSTest() {
     }
 
     function handleReceived(data) {
-        let newSet = [...testState]
-        newSet.push(data)
-        setTestState(newSet)
+        setTestState(prev => [...prev, data])
     }
     
     function handleSubmit(e) {
@@ -67,7 +70,7 @@ function WSTest() {
                 <input type='text' name='name'></input>
                 <input type='submit'/>
             </form>
-            {testState.map(test => <li>{test.name}</li>)}
+            {testState.map(test => <li key={test.id}>{test.name}</li>)}
         </div>
     )
 }

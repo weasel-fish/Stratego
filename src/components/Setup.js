@@ -63,7 +63,7 @@ function Setup() {
     return (
         <>
             <h1>Setup</h1>
-            <button onClick={() => setAuto(!auto)}>{auto ? 'Manual' :'Auto'}</button>
+            <button onClick={() => setAuto(!auto)}>{auto ? 'Manual' :'Autofill'}</button>
             <p>You have selected: {selected ? selected.name : 'no piece'}</p>
             <div className='setup'>
                 <PiecesContainer selected={selected} setSelected={setSelected} auto={auto} pieceDictionary={pieceDictionary}/>

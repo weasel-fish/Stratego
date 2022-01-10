@@ -11,6 +11,6 @@ class TestgamesController < ApplicationController
     private
 
     def testgame_params
-        params.require(:testgame).permit(:row_one => [])
+        params.require(:testgame).permit(:row_one => [], :row_two => [], :row_three => [], :row_four => [])
     end
 end
